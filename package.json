@@ -1,0 +1,21 @@
+{
+  "name": "stacks",
+  "version": "1.0.0",
+  "description": "A way to copy, move, pastes several files or directories that aren't near each other.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "modalfilemanager"
+  ],
+  "author": "Richard Guay",
+  "license": "MIT",
+  "mfmextension": {
+    "name": "Stacks",
+    "description": "FA way to copy, move, pastes several files or directories that aren't near each other.",
+    "type": 0,
+    "github": "",
+    "main": "main.js"
+  }
+}
