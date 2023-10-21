@@ -3,6 +3,7 @@ var stacks = {
   fs: null,
   hdir: null,
   configdir: null,
+  dir: "",
   init: async function(extManager) {
     //
     // This function adds all the commands for working with stacks and 
@@ -12,13 +13,15 @@ var stacks = {
     stacks.fs = stacks.extMan.getLocalFS();
     stacks.hdir = await stacks.fs.getHomeDir();
     stacks.configdir = await stacks.extMan.getConfigDir();
-    var addCommand = stacks.extMan.getCommands().addCommand;
+    stacks.dir = await stacks.fs.appendPaht(stacks.configdir, "Stacks");
+    const addCommand = stacks.extMan.getCommands().addCommand;
+    addCommand('Get Stacks Directory', 'stacks.GetStackDir','Get the path to the stacks directory.', stacks.GetStackDir);
   },
   installKeyMaps: function() {
-    var newKeyboard = stacks.extMan.getExtCommand('addKeyboardShort').command;
-    newKeyboard('normal', false, false, false, 'Escape', () => {
-      stacks.extMan.getExtCommand('changeMode').command('normal');
-    });
+    let newKeyboard = stacks.extMan.getExtCommand('addKeyboardShort').command;
+  },
+  GetStackDir: function() {
+    return(stacks.dir);
   }
 };
 return (stacks);
