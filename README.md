@@ -6,10 +6,10 @@ Commands added to the command prompt are:
 
 | Command Prompt Name | Program Name | Description |
 | --- | --------- | ------- |
-| Copy to the Default Stack | CopyToDefaultStack | Copy the selection to the default stack. |
-| Move to the Default Stack | MoveToDefaultStack | Move the selection to the default stack. |
-| Paste from the Default Stack | PasteFromDefaultStack | Pastes the file in the default stack to the current directory. |
-| Clear the Default Stack | ClearDefaultStack | Deletes all of file and directories in the default stack. |
+| Copy to the Default Stack | CopyToDefaultStack | Copy the selection or current cursor entry to the default stack. |
+| Move to the Default Stack | MoveToDefaultStack | Move the selection or current cursor entry to the default stack. |
+| Paste from the Default Stack | PasteFromDefaultStack | Pastes the files and directories in the default stack to the current directory. |
+| Clear the Default Stack | ClearDefaultStack | Deletes all files and directories in the default stack. |
 
 Commands for extension use are:
 
