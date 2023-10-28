@@ -36,6 +36,7 @@ const stacks = {
     addCommand('Copy to the Default Stack', 'stacks.CopyToDefaultStack', 'Copy the selection to the default stack.', stacks.CopyToDefaultStack);
     addCommand('Move to the Default Stack', 'stacks.MoveToDefaultStack', 'Move the selection to the default stack.', stacks.MoveToDefaultStack);
     addCommand('Paste from the Default Stack', 'stacks.PasteFromDefaultStack', 'Pastes the file in the default stack to the current directory.', stacks.PasteFromDefaultStack);
+    addCommand('Clear the Default Stack', 'stacks.ClearDefaultStack', 'Deletes all of file and directories in the default stack.', stacks.ClearDefaultStack);
   },
   installKeyMaps: function() {
   },
@@ -46,14 +47,14 @@ const stacks = {
     // 
     // This function reads the stacks directory for subfolders and returns a list of them.
     //
-    return(await stacks.ext.getCommands().readDir(stacks.dir).map(item => item.name));
+    return(await stacks.fs.getDirList(stacks.dir).map(item => item.name));
   },
   CopyToDefaultStack: async function() {
     // 
     // This function copies the current selection(s) to the default stack.
     //
-    const copyEntries = stacks.extMan.getExtCommand("copyEntriesCommand");
-    const getSelection = stacks.extMan.getExtCommand("getSelectedFiles");
+    const copyEntries = stacks.extMan.getExtCommand("copyEntriesCommand").command;
+    const getSelection = stacks.extMan.getExtCommand("getSelectedFiles").command;
     const files = await getSelection();
     await copyEntries(files,stacks.defaultStack,true);
   },
@@ -61,8 +62,8 @@ const stacks = {
     //
     // This function moves the current selection to the default stack.
     //
-    const moveEntries = stacks.extMan.getExtCommand("moveEntriesCommand");
-    const getSelection = stacks.extMan.getExtCommand("getSelectedFiles");
+    const moveEntries = stacks.extMan.getExtCommand("moveEntriesCommand").command;
+    const getSelection = stacks.extMan.getExtCommand("getSelectedFiles").command;
     const files = await getSelection();
     await moveEntries(files,stacks.defaultStack,true);
   },
@@ -71,11 +72,19 @@ const stacks = {
     // This function pastes all the files and directories in the default stack to the
     // current directory.
     //
-    const copyEntries = stacks.extMan.getExtCommand("copyEntriesCommand");
-    const getCurrentFile = stacks.extMan.getExtCommand("getCurrentFile");
-    const files = await stacks.ext.getCommands().readDir(stacks.defaultStack);
+    const copyEntries = stacks.extMan.getExtCommand("copyEntriesCommand").command;
+    const getCurrentFile = stacks.extMan.getExtCommand("getCurrentFile").command;
+    const files = await stacks.fs.getDirList(stacks.defaultStack);
     const currentDirectory = getCurrentFile().dir;
-    copyEntries(files, currentDirectory);
+    copyEntries(files, currentDirectory, true);
+  },
+  ClearDefaultStack: async function() {
+    // 
+    // This function clears all entries in the default stack.
+    //
+    const deleteEntries = stacks.extMan.getExtCommand("deleteEntriesCommand").command;
+    const files = await stacks.fs.getDirList(stacks.defaultStack);
+    await deleteEntries(files);
   }
 };
 return (stacks);
