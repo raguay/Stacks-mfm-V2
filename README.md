@@ -17,4 +17,4 @@ Commands for extension use are:
 | --- | ------ | --- |
 | Get Stacks Directory | Get the path to the stacks directory. | GetStackDir | 
 | Get Stacks List | Get a list of Stack directories. | GetStackNames |
-|
+
