@@ -15,6 +15,6 @@ Commands for extension use are:
 
 | Command Name | Description | Program Name |
 | --- | ------ | --- |
-| Get Stacks Directory | Get the path to the stacks directory. | GetStackDir);
-| Get Stacks List | Get a list of Stack directories. | GetStackNames)
+| Get Stacks Directory | Get the path to the stacks directory. | GetStackDir | 
+| Get Stacks List | Get a list of Stack directories. | GetStackNames |
 |
